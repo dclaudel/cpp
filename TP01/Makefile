@@ -2,7 +2,7 @@ all: test
 
 # apres l'etiquete (test:) un .o pour chaque .cpp compilé
 # cette ligne genere un executable appele 'test'
-test: Exos3.o
+test: Exos4.o
 	g++ -Wall -o $@ $^
 
 # cette ligne compile tous les .ccp et genere des .o avec le meme nom

@@ -30,6 +30,11 @@ int main()
     C=Multiplication_Matrice(C,M,P,&n,&m);
     Affichage_Matrice(C,&n,&m);
 
+
+    delete(M);
+    delete(P);
+    delete(C);
+
     return 0;
 }
 
@@ -81,8 +86,6 @@ void Affichage_Matrice(int** matrice,int* n, int* m)
 
 int** Multiplication_Matrice(int** resultat,int** matrice1, int** matrice2,int* n, int* m)
 {
-    int pas, colonne;
-
     resultat = new int*[(*n)];
     for(int i = 0; i <(*n); i++)
     {
@@ -102,5 +105,4 @@ int** Multiplication_Matrice(int** resultat,int** matrice1, int** matrice2,int* 
     }   
 
     return resultat;
-
 }
