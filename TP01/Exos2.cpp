@@ -8,12 +8,12 @@ void Affichage_Matrice_Tableau_unidimensionnel(int** matrice,int* n, int* m);
 
 int main()
 {
-    int n;
-    int m;
+    int n=0;
+    int m=0;
 
     Saisir_Taille_Matrice(&n,&m);
 
-    int **matrice;
+    int **matrice=0;
 
     matrice=Saisir_Matrice(matrice,&n,&m);
     Affichage_Matrice(matrice,&n,&m);

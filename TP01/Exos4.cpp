@@ -2,54 +2,64 @@
 #include <string.h>
 using namespace std;
 
-char** Saisir_Phrase(char** tableau);
-void Afficher_Phrases(char** tableau);
+string* Saisir_Phrase(string* tableau);
+void Afficher_Phrases(string* tableau);
+void Permut_Phrases(string* tableau);
 char** Saisir_Mots(char** tableau);
 void Afficher_Mots(char** tableau);
 void Supprimer_Mots_Ordre_lexicographique(char** tableau);
 
 int main()
 {
-    char **Tableau_Chaine;
-    char **Tableau_Mots;
-    char *Mot_supp;
-    char rep;
+    string *Tableau_Chaine=0;
+    char **Tableau_Mots=0;
 
-    /*Tableau_Chaine=Saisir_Phrase(Tableau_Chaine);
-    Afficher_Phrases(Tableau_Chaine);*/
+    Tableau_Chaine=Saisir_Phrase(Tableau_Chaine);
+    Afficher_Phrases(Tableau_Chaine);
+    Permut_Phrases(Tableau_Chaine);
+    Afficher_Phrases(Tableau_Chaine);
 
     Tableau_Mots=Saisir_Mots(Tableau_Mots);
     Afficher_Mots(Tableau_Mots);
 
     Supprimer_Mots_Ordre_lexicographique(Tableau_Mots);
 
+    cout << "\x1B[2J\x1B[H";
+
     delete(Tableau_Mots);
     delete(Tableau_Chaine);
 }
 
-char** Saisir_Phrase(char** tableau)
+string* Saisir_Phrase(string* tableau)
 {
-    tableau = new char*[10];
-    for(int i = 0; i <10; i++)
-    {
-        tableau[i] = new char[200];
-    }
+    tableau = new string[10];
 
     for(int i=0; i<10;i++)
     {
         cout << "saisir la phrase numero  " << i+1 << " :";
-        cin >> tableau[i];
+        getline(cin,tableau[i]);
     }
 
     return tableau;
 }
 
-void Afficher_Phrases(char** tableau)
+void Afficher_Phrases(string* tableau)
 {
     for(int i=0; i<10;i++)
     {
         cout << tableau[i] << endl;
     }    
+}
+
+void Permut_Phrases(string* tableau)
+{
+    string temp;
+
+    temp = tableau[0];
+
+    tableau[0]=tableau[1];
+    tableau[1]=temp;
+
 }
 
 char** Saisir_Mots(char** tableau)
@@ -73,7 +83,10 @@ void Afficher_Mots(char** tableau)
 {
     for(int i=0; i<10;i++)
     {
-        cout << tableau[i] << endl;
+        if(tableau[i]!=NULL)
+        {
+            cout << tableau[i] << endl;
+        }
     }    
 }
 
@@ -81,35 +94,45 @@ void Supprimer_Mots_Ordre_lexicographique(char** tableau)
 {
     char *Mot;
     char rep;
-    int indice;
-    int nbmot=10;
+    int motsupp=0;
+    int indice=0;
+    int j=0;
 
     Mot=tableau[0];
-    for(int i=0; i<10; i++)
+
+    while(motsupp<10)
     {
-        for(int i=1; i<nbmot;i++)
+        for(int i=0;i<10;i++)
         {
-            if((strcmp(Mot,tableau[i])>0) && tableau[i]!=NULL)
+            if(tableau[i]!=NULL)
             {
-                Mot=tableau[i];
-                indice=i;
+                if(strcmp(Mot,tableau[i])>0)
+                {
+                    Mot=tableau[i];
+                    indice=i;
+                }
             }
-        }  
+        }
+
         cout << "Voulez-vous supprimer le mot " << Mot << " ? (o/n)";
         cin >> rep;
         if(rep=='o')
         {
-            delete(Mot);
-            while(indice<nbmot)
+            tableau[indice]=NULL;
+            motsupp++;
+            while(j<10)
             {
-                if(indice+1!=nbmot)
+                if(tableau[j]!=NULL)
                 {
-                    tableau[indice]=tableau[indice+1];
+                    Mot=tableau[j];
+                    j=10;
                 }
-                indice++;
+                j++;
             }
-            tableau[nbmot]=NULL;
-            nbmot--;
+            j=0;
         }
+        cout << "Mot restant : " << endl;
+        cout << "\x1B[2J\x1B[H";
+        Afficher_Mots(tableau);
     }
 }

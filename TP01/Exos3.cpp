@@ -7,14 +7,14 @@ int** Multiplication_Matrice(int** resultat,int** matrice1, int** matrice2,int* 
 
 int main()
 {
-    int n;
-    int m;
+    int n=0;
+    int m=0;
 
     Saisir_Taille_Matrice(&n,&m);
 
-    int **M;
-    int **P;
-    int **C;
+    int **M=0;
+    int **P=0;
+    int **C=0;
 
     std::cout << "saisi de la matrice M :" << std::endl;
     M=Saisir_Matrice(M,&n,&m);
