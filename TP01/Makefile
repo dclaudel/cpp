@@ -1,4 +1,4 @@
-all: Exos1 Exos2 Exos3 Exos4 
+all: Exos1 Exos2 Exos3 Exos4 Exos5 Exos6 clean
 
 # apres l'etiquete (test:) un .o pour chaque .cpp compilé
 # cette ligne genere un executable appele 'test'
@@ -13,6 +13,12 @@ Exos3: Exos3.cpp
 
 Exos4: Exos4.cpp
 	g++ -Wall Exos4.cpp -o Exos4
+
+Exos5: Exos5.cpp
+	g++ -Wall Exos5.cpp -o Exos5
+
+Exos6: Exos6.cpp
+	g++ -Wall Exos6.cpp -o Exos6
 
 clean:
 	rm -f *.o test

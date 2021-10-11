@@ -28,6 +28,8 @@ int main()
 
     delete(Tableau_Mots);
     delete(Tableau_Chaine);
+
+    return 0;
 }
 
 string* Saisir_Phrase(string* tableau)
